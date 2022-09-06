@@ -1,20 +1,15 @@
-import CardGrid from './Components/Organism/CardGrid';
-import ViewTemplate from './Layouts/Template/ViewTemplate';
+import { Routes, Route } from 'react-router-dom';
+import CreatePerson from './Pages/CreatePerson';
+import Home from './Pages/Home';
+import SearchPerson from './Pages/SearchPerson';
 
 function App() {
 	return (
-		<ViewTemplate>
-			<div className='flex flex-col gap-4 w-full'>
-				<div className='px-12 text-center text-sm font-semibold'>
-					Bienvenido a la interface de manejo de personal registrado, puedes
-					navegar para crear o buscar a alguna persona en especifico.
-				</div>
-				<button className='cursor-pointer rounded-xl p-2 bg-sky-200 w-fit self-center'>
-					Mostrar personas registradas
-				</button>
-				<CardGrid />
-			</div>
-		</ViewTemplate>
+		<Routes>
+			<Route path='/' element={<Home />} />
+			<Route path='/search_person' element={<SearchPerson />} />
+			<Route path='/create_person' element={<CreatePerson />} />
+		</Routes>
 	);
 }
 

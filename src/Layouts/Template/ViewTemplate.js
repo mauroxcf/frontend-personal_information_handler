@@ -10,10 +10,10 @@ import Header from '../Header/Header';
  */
 function ViewTemplate({ children }) {
 	return (
-		<body className='container flex flex-col absolute top-0 min-w-full min-h-screen overflow-hidden p-4'>
+		<div className='container flex flex-col absolute top-0 min-w-full min-h-screen overflow-hidden p-4'>
 			<Header />
 			<main className='flex w-full pt-4 pb-20'>{children}</main>
-		</body>
+		</div>
 	);
 }
 
