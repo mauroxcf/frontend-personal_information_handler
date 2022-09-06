@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 //UI
 import ViewTemplate from '../Layouts/Template/ViewTemplate';
+import axiosData from '../Utils/axiosData';
 
+//BL
+//import useCreatePerson from '../Utils/useCreatePerson';
+
+/**
+ * Renders the creation person form
+ * @returns After complete the form should return a message of succes.
+ */
 function CreatePerson() {
+	const [data, setData] = useState({});
+	const [loading, setLoading] = useState(true);
 	return (
 		<ViewTemplate>
 			<div className='flex flex-col gap-4'>
@@ -21,10 +31,7 @@ function CreatePerson() {
 						hobbie: '',
 					}}
 					onSubmit={(values, actions) => {
-						setTimeout(() => {
-							alert(JSON.stringify(values, null, 2));
-							actions.setSubmitting(false);
-						}, 1000);
+						if (values) axiosData(values, setData, setLoading);
 					}}
 				>
 					{({ isSubmitting }) => (

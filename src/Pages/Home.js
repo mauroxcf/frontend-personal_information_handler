@@ -11,7 +11,7 @@ import useGetPerson from '../Utils/useGetPerson';
  */
 function Home() {
 	const { data, loading } = useGetPerson();
-	console.log(loading);
+
 	return (
 		<ViewTemplate>
 			<div className='flex flex-col gap-4 w-full'>
