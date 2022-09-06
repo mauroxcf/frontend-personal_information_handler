@@ -2,22 +2,29 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import RowItems from './RowItems';
 
-function Card({ customWidth = 'max-w-sm', id }) {
+/**
+ * It's a function that returns a div with some other components inside
+ * @returns A component that renders a card with the information of a single person.
+ */
+function Card({ customWidth = 'max-w-sm', singlePerson }) {
 	return (
 		<div
 			className={`p-2 ${customWidth} bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 flex flex-col gap-2`}
 		>
 			<div className='flex flex-col gap-2'>
-				<RowItems field={'Tipo de documento'} value={'Cédula'} />
-				<RowItems field={'# de documento'} value={'1143349118'} />
-				<RowItems field={'Nombres'} value={'Mauricio'} />
-				<RowItems field={'Apellidos'} value={'Contreras'} />
-				<RowItems field={'Hobbies'} value={'Jugar smash'} />
+				<RowItems
+					field={'Tipo de documento'}
+					value={singlePerson.document_type}
+				/>
+				<RowItems field={'# de documento'} value={singlePerson.document_id} />
+				<RowItems field={'Nombres'} value={singlePerson.first_name} />
+				<RowItems field={'Apellidos'} value={singlePerson.last_name} />
+				<RowItems field={'Hobbies'} value={singlePerson.hobbie} />
 			</div>
 			<div className='flex flex-row justify-between'>
-				<Link to={`/update_person/${id}`}>
+				<Link to={`/update_person/${singlePerson.id}`}>
 					<button className='cursor-pointer p-1 text-xs md:text-sm rounded-xl bg-sky-200'>
-						Modificar
+						Editar
 					</button>
 				</Link>
 				<button className='cursor-pointer p-1 text-xs md:text-sm rounded-xl bg-sky-200'>
