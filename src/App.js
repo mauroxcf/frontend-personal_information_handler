@@ -12,8 +12,8 @@ function App() {
 				<button className='cursor-pointer rounded-xl p-2 bg-sky-200 w-fit self-center'>
 					Mostrar personas registradas
 				</button>
+				<CardGrid />
 			</div>
-			<CardGrid />
 		</ViewTemplate>
 	);
 }
