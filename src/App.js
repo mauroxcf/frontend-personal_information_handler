@@ -9,6 +9,7 @@ function App() {
 			<Route path='/' element={<Home />} />
 			<Route path='/search_person' element={<SearchPerson />} />
 			<Route path='/create_person' element={<CreatePerson />} />
+			<Route path='/update_person/:id' element={<CreatePerson />} />
 		</Routes>
 	);
 }

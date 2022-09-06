@@ -4,13 +4,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 //UI
 import ViewTemplate from '../Layouts/Template/ViewTemplate';
 
-function CreatePerson() {
+function UpdatePerson() {
 	return (
 		<ViewTemplate>
 			<div className='flex flex-col gap-4'>
 				<p className='px-12 text-center text-sm font-semibold'>
-					Bienvenido a la creación de persona, por favor llenar todos los campos
-					requeridos.
+					Bienvenido a la Edición de persona, llena los campos que consideres.
 				</p>
 				<Formik
 					initialValues={{
@@ -121,4 +120,4 @@ function CreatePerson() {
 	);
 }
 
-export default CreatePerson;
+export default UpdatePerson;
