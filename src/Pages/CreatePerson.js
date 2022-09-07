@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useNavigate } from 'react-router-dom';
 
 //UI
 import ViewTemplate from '../Layouts/Template/ViewTemplate';
-import axiosData from '../Utils/axiosData';
 
 //BL
-//import useCreatePerson from '../Utils/useCreatePerson';
+import axiosData from '../Utils/axiosData';
+import { personInitialValues } from '../Data/personData';
 
 /**
  * Renders the creation person form
  * @returns After complete the form should return a message of succes.
  */
 function CreatePerson() {
+	const navigate = useNavigate();
 	const [data, setData] = useState({});
 	const [loading, setLoading] = useState(true);
+
 	return (
 		<ViewTemplate>
 			<div className='flex flex-col gap-4'>
@@ -23,15 +26,13 @@ function CreatePerson() {
 					requeridos.
 				</p>
 				<Formik
-					initialValues={{
-						document_type: '',
-						document_id: '',
-						first_name: '',
-						last_name: '',
-						hobbie: '',
-					}}
+					initialValues={personInitialValues}
 					onSubmit={(values, actions) => {
-						if (values) axiosData(values, setData, setLoading);
+						if (values)
+							axiosData(values, setData, setLoading).then((res) => {
+								alert('Registro Completado!');
+								navigate('/');
+							});
 					}}
 				>
 					{({ isSubmitting }) => (
