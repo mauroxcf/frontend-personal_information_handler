@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useNavigate, useParams } from 'react-router-dom';
 
 //UI
 import ViewTemplate from '../Layouts/Template/ViewTemplate';
 
+//BL
+import axiosData from '../Utils/axiosData';
+import { personInitialValues } from '../Data/personData';
+
+/**
+ * Renders the update person form
+ * @returns After complete the form should return a message of success.
+ */
 function UpdatePerson() {
+	const params = useParams();
+	const navigate = useNavigate();
+	const [loading, setLoading] = useState(true);
+	const { id } = params;
+	const url = `http://localhost:5000/update/${id}`;
 	return (
 		<ViewTemplate>
 			<div className='flex flex-col gap-4'>
@@ -12,18 +26,13 @@ function UpdatePerson() {
 					Bienvenido a la Edición de persona, llena los campos que consideres.
 				</p>
 				<Formik
-					initialValues={{
-						document_type: '',
-						document_id: '',
-						first_name: '',
-						last_name: '',
-						hobbie: '',
-					}}
+					initialValues={personInitialValues}
 					onSubmit={(values, actions) => {
-						setTimeout(() => {
-							alert(JSON.stringify(values, null, 2));
-							actions.setSubmitting(false);
-						}, 1000);
+						if (values)
+							axiosData(values, setLoading, url).then((res) => {
+								alert('Edicion Completa!');
+								navigate('/');
+							});
 					}}
 				>
 					{({ isSubmitting }) => (

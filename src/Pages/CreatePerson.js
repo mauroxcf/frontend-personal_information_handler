@@ -15,8 +15,8 @@ import { personInitialValues } from '../Data/personData';
  */
 function CreatePerson() {
 	const navigate = useNavigate();
-	const [data, setData] = useState({});
 	const [loading, setLoading] = useState(true);
+	const url = 'http://localhost:5000/new';
 
 	return (
 		<ViewTemplate>
@@ -29,7 +29,7 @@ function CreatePerson() {
 					initialValues={personInitialValues}
 					onSubmit={(values, actions) => {
 						if (values)
-							axiosData(values, setData, setLoading).then((res) => {
+							axiosData(values, setLoading, url).then((res) => {
 								alert('Registro Completado!');
 								navigate('/');
 							});
