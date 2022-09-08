@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { getAllPersonUrl } from '../Data/backendEndpoints';
 
 /**
  * The function uses the useEffect hook to fetch data from the server and update the state of the data
@@ -12,7 +13,7 @@ function useGetPerson(dataChanges) {
 
 	const fetchData = async () => {
 		try {
-			const { data: response } = await axios.get('http://localhost:5000/all');
+			const { data: response } = await axios.get(getAllPersonUrl);
 			setData(response);
 		} catch (error) {
 			console.error(error);

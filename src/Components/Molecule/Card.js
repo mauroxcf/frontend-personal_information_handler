@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { deletePersonUrl } from '../../Data/backendEndpoints';
 import axiosDelete from '../../Utils/axiosDelete';
 import RowItems from './RowItems';
 
@@ -13,7 +14,7 @@ function Card({
 	setDataChanges,
 	dataChanges,
 }) {
-	const url = 'http://localhost:5000/delete/' + singlePerson.id;
+	const url = deletePersonUrl + singlePerson.id;
 	return (
 		<div
 			key={singlePerson.id}

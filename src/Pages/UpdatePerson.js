@@ -8,6 +8,7 @@ import ViewTemplate from '../Layouts/Template/ViewTemplate';
 //BL
 import axiosData from '../Utils/axiosData';
 import { personInitialValues } from '../Data/personData';
+import { updatePersonUrl } from '../Data/backendEndpoints';
 
 /**
  * Renders the update person form
@@ -18,7 +19,7 @@ function UpdatePerson() {
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(true);
 	const { id } = params;
-	const url = `http://localhost:5000/update/${id}`;
+	const url = updatePersonUrl + id;
 	return (
 		<ViewTemplate>
 			<div className='flex flex-col gap-4'>

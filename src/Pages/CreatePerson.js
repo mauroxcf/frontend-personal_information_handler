@@ -8,6 +8,7 @@ import ViewTemplate from '../Layouts/Template/ViewTemplate';
 //BL
 import axiosData from '../Utils/axiosData';
 import { personInitialValues } from '../Data/personData';
+import { createPersonUrl } from '../Data/backendEndpoints';
 
 /**
  * Renders the creation person form
@@ -16,7 +17,6 @@ import { personInitialValues } from '../Data/personData';
 function CreatePerson() {
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(true);
-	const url = 'http://localhost:5000/new';
 
 	return (
 		<ViewTemplate>
@@ -29,7 +29,7 @@ function CreatePerson() {
 					initialValues={personInitialValues}
 					onSubmit={(values, actions) => {
 						if (values)
-							axiosData(values, setLoading, url).then((res) => {
+							axiosData(values, setLoading, createPersonUrl).then((res) => {
 								alert('Registro Completado!');
 								navigate('/');
 							});
