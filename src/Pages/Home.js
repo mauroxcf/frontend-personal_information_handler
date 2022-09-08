@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 //UI
 import CardGrid from '../Components/Organism/CardGrid';
@@ -10,7 +10,8 @@ import useGetPerson from '../Utils/useGetPerson';
  * @returns The data is being returned as an object.
  */
 function Home() {
-	const { data, loading } = useGetPerson();
+	const [dataChanges, setDataChanges] = useState(0);
+	const { data, loading } = useGetPerson(dataChanges);
 
 	return (
 		<ViewTemplate>
@@ -26,7 +27,11 @@ function Home() {
 				>
 					{loading ? 'Cargando...' : 'Carga completa!'}
 				</button>
-				<CardGrid personData={data.data} />
+				<CardGrid
+					personData={data.data}
+					dataChanges={dataChanges}
+					setDataChanges={setDataChanges}
+				/>
 			</div>
 		</ViewTemplate>
 	);

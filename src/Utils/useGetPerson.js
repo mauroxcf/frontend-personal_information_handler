@@ -6,22 +6,23 @@ import axios from 'axios';
  * property.
  * @returns An object with two properties: data that contains all the registered people and loading.
  */
-function useGetPerson() {
+function useGetPerson(dataChanges) {
 	const [data, setData] = useState({ data: [] });
 	const [loading, setLoading] = useState(true);
 
+	const fetchData = async () => {
+		try {
+			const { data: response } = await axios.get('http://localhost:5000/all');
+			setData(response);
+		} catch (error) {
+			console.error(error);
+		}
+		setLoading(false);
+	};
+
 	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const { data: response } = await axios.get('http://localhost:5000/all');
-				setData(response);
-			} catch (error) {
-				console.error(error);
-			}
-			setLoading(false);
-		};
 		fetchData();
-	}, []);
+	}, [dataChanges]);
 
 	return { data, loading };
 }
