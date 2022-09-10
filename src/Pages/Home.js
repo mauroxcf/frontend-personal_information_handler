@@ -28,7 +28,7 @@ function Home() {
 					{loading ? 'Cargando...' : 'Carga completa!'}
 				</button>
 				<CardGrid
-					personData={data.data}
+					personData={data?.data}
 					dataChanges={dataChanges}
 					setDataChanges={setDataChanges}
 				/>
